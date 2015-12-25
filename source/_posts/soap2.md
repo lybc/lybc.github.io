@@ -4,7 +4,7 @@ categories: PHP
 tags: soap
 
 ---
-
+<!-- toc -->
 第一次返回的数据达不到要求，客户要求需要50几个字段，但是始终没办法在wsdl文件中定义50多个标签，第一篇中的wsdl模板太过简单，没有自定义类型。
 <!--more-->
 
@@ -15,7 +15,7 @@ tags: soap
 
 作者的github里有使用方法的详细介绍。这里只简单的描述一下。
 
-##获取wsdl-creator
+## 获取wsdl-creator
 原作者使用composer管理这个东西，你可以使用composer建立一个项目。
 ```bash
 	composer create-project piotrooo/wsdl-creator projectName
@@ -27,7 +27,7 @@ tags: soap
 ```
 
 
-##如何使用wsdl-creator生成wsdl
+## 如何使用wsdl-creator生成wsdl
 1. 创建一个类里面写好供客户调用的接口，因为使用了wsdl生成库，所以接口类的注释是有讲究的
 ```php
 class ServiceOrder{

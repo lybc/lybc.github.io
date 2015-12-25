@@ -4,6 +4,7 @@ categories: PHP
 tags: soap
 
 -----
+<!-- toc -->
 做外部可调用的接口，要求根据一个几个参数返回所有的字段信息，需要使用soap通信。
 <!--more-->
 **什么是soap通信**
@@ -15,10 +16,10 @@ tags: soap
 
 用一个简单的例子来说明SOAP使用过程，一个SOAP消息可以发送到一个具有Web Service功能的Web站点，例如，一个含有房价信息的数据库，消息的参数中标明这是一个查询消息，此站点将返回一个XML格式的信息，其中包含了查询结果（价格，位置，特点，或者其他信息）。由于数据是用一种标准化的可分析的结构来传递的，所以可以直接被第三方站点所利用。
 
-#PHP使用soap通信的方法
+# PHP使用soap通信的方法
 soap有两种操作模式，**NO-WSDL**和**WSDL**，WSDL是基于XML的网络服务描述语言，用于描述网络服务，也可以定义网络服务
 
-##1. NO-WSDL方式使用soap
+## 1. NO-WSDL方式使用soap
 首先我们来定义客户端**client**和服务端**server**，在客户端调用服务端提供的接口，得到返回的数据后，就完成了一次soap通信
 
 **client.php客户端代码：**
@@ -58,7 +59,7 @@ try{
 }
 ```
 
-##2. WSDL方式使用soap
+## 2. WSDL方式使用soap
 **关于WSDL，维基百科搬运：**
 >WSDL（Web服务描述语言，Web Services Description Language）是为描述Web服务发布的XML格式。W3C组织（World Wide Web Consortium）没有批准1.1版的WSDL，当前的WSDL版本是2.0，是W3C的推荐标准（recommendation）（一种官方标准），并将被W3C组织批准为正式标准。
 

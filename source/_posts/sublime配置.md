@@ -3,7 +3,8 @@ date: 2015-10-22 17:29:59
 tags: Sublime Text 3
 categories: 收藏品
 ---
-#sublime text 3 中运行PHP文件
+<!-- toc -->
+# sublime text 3 中运行PHP文件
 一、将PHP安装目录放如环境变量PATH
 二、添加PHP的build system
 
@@ -31,7 +32,7 @@ categories: 收藏品
 
 执行快捷键为Ctrl+B。
 
-#sublime text执行Python脚本
+# sublime text执行Python脚本
 安装sublimeREPL插件
 
 在Tools -> sublimeREPL -> Python -> Python - RUN current file 可以运行当前文件

@@ -3,6 +3,7 @@ date: 2015-12-25 11:28:30
 tags: Scrapy 
 categories: Python
 ---
+<!-- toc -->
 这篇文章来源于在抓取[vsco](http://vsco.co)时遇到的问题，以常规方法解析页面时，页面返回的内容只有网站的整体框架，没有页面具体信息，经过分析发现网站是采用ajax获取后台图片信息，并且对图片做了处理生成了大图和缩略图，为了能继续爬取vsco的图片，所以研究了一下Scrapy提供的图片管道以及调用浏览器执行JS
 <!-- more -->
 
@@ -13,8 +14,8 @@ categories: Python
 pip install selenium
 ```
 
-## 下载[chrome驱动包](http://chromedriver.storage.googleapis.com/index.html?path=2.7/)
-下载后放入python环境目录下的Script文件夹中，即可在代码中直接调用，本机使用chrome，也可以使用Firefox，原理相同将驱动换成Firefox的驱动即可
+## 下载chrome驱动包
+[下载地址]((http://chromedriver.storage.googleapis.com/index.html?path=2.7/))下载后放入python环境目录下的Script文件夹中，即可在代码中直接调用，本机使用chrome，也可以使用Firefox，原理相同将驱动换成Firefox的驱动即可
 
 完成后即可以开始编写爬虫代码，项目中使用selenium的代码如下：
 ```python
