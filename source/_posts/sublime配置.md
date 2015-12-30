@@ -56,3 +56,6 @@ sublime text3 markdown 预览插件，浏览器实时预览无需刷新
 1. <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>p</kbd> 
 2. install package
 3. OmniMarkupPreviwer
+
+# pretty json
+格式化长串json字符串
