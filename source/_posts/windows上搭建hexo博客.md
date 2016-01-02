@@ -26,8 +26,8 @@ tags: hexo
 
 输入如下命令：
 ```bash
-git config --global user.name "lybc"
-git config --global user.email lybcli@163.com
+git config --global user.name "xxxx"
+git config --global user.email "xxxx@163.com"
 ```
 配置好后就可以开始使用git
 
@@ -77,8 +77,7 @@ INFO Hexo is running at http://0.0.0.0:4000/. Press CTRL+C to stop
 ![Alt text](http://7xicmj.com1.z0.glb.clouddn.com/QQ截图20160102165437.png)
 
 ## github
->
-github是一个开源协作社区，也是一个源代码托管服务商，它提供很便捷的代码托管服务，和基本的社区功能，号称程序员的Facebook，有着极高的人气，许多有名的重要项目都托管在上面
+>github是一个开源协作社区，也是一个源代码托管服务商，它提供很便捷的代码托管服务，和基本的社区功能，号称程序员的Facebook，有着极高的人气，许多有名的重要项目都托管在上面
 
 github希望用户可以看到一个简明易懂的网页，说明每个项目应该如何使用，因此设计了一个pages功能，允许用户自定义项目首页，因此我们可以利用这个功能，来作为自己的博客托管服务器
 
