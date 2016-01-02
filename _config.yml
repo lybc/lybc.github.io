@@ -70,6 +70,7 @@ deploy:
   type: git
   repository: git@github.com:lybc/lybc.github.io.git
   branch: master
+  message: update
 
 backup:
   type: git
