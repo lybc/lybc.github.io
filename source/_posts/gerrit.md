@@ -77,3 +77,10 @@ $ git fetch ssh://boylee@redmin.loongjoy.com:18084/LenovoCrm refs/changes/66/366
 $ git reset --soft HEAD~1
 ```
 回退一个版本，则本地最后一次commit信息会被回退，此时在hotfix分支上做修改后重新提交并push到develop分支，即可在原有提交上创建patch set
+
+## git升级2.6.2报错
+```bash
+Unable to negotiate with 192.168.1.101: no matching key exchange method found. Their offer: diffie-hellman-group1-sha1
+fatal: Could not read from remote repository.
+```
+因为OpenSSH 7.0 删除了对`diffie-hellman-group1-sha1`方法的支持，只好将git回退到1.9.5版本
