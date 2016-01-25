@@ -42,4 +42,7 @@ tags: 工具
 
 # About 其他工具
 - [Fiddler - 抓包工具](http://docs.telerik.com/fiddler/KnowledgeBase/QuickExec)
+
+# About 插件
 - [waka time - IDE插件 统计每日coding时间](https://wakatime.com/dashboard)
+- [post man - 浏览器插件 调试API](http://www.getpostman.com/)
