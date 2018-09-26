@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <title>Lybc&#39;s Life</title>
+  <meta name="keywords" contect="">
+  <meta name="description" contect="">
+  <meta name="author" contect="John Doe">
+  <!-- <link rel="stylesheet" href="/styles/typo.css"> -->
+  <link rel="stylesheet" href="/styles/index.css">
+  <link href="https://cdn.bootcss.com/KaTeX/0.7.1/katex.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+</head>
+  <body>
+
+    <div class="ui vertical left fixed inverted menu">
+    <div class="item">
+        <img src="/imgs/logo.png" class="ui tiny circular image">
+        <h3 class="ui header">
+            <div class="content">
+                Lybc's Life
+                <div class="sub header subtitle"></div>
+            </div>
+        </h3>
+
+        
+
+        
+        <a class="ui circular github mini icon button" target="_blank" href="https://github.com/lybc">
+            <i class="github icon"></i>
+        </a>
+        
+
+        
+        <a class="ui circular google plus mini icon button" target="_blank" href="https://plus.google.com/u/0/115572633568673296955">
+            <i class="google plus icon"></i>
+        </a>
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+        <a class="ui circular grey mini icon button" target="_blank" href="mailto:/lybcli@163.com">
+            <i class="mail outline icon"></i>
+        </a>
+        
+        
+    </div>
+    
+    
+        <a class="item" href="/">
+            主页
+        </a>
+    
+</div>
+    <main class="main">
+      <div class="ui grid container">
+    <div class="row">
+        <div class="ui basic segment">
+            <h1 class="ui header">
+                Laravel 项目开发规范
+                <div class="sub header">
+                    文章创建于：
+                    2017-08-10，最后修改于：2018-09-19
+                </div>
+            </h1>
+            
+                
+                    <a class="ui blue mini label" href="/categories/规范/">
+                        <i class="block layout icon"></i>
+                        规范
+                        <div class="detail">
+                            1
+                        </div>
+                    </a>
+                 
+
+            
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div id="article" class="eleven wide column">
+            <h2 id="1-前言"><a class="header-anchor" href="#1-前言">¶</a>1. 前言</h2>
+<p>本规范大量参考 <a href="https://laravel-china.org/topics/3626/laravel-remote-and-its-sails-and-freedom#%E4%BC%98%E5%B8%86%E8%BF%9C%E6%89%AC" target="_blank" rel="noopener">优帆远扬</a> 团队内部 Laravel 工程师践行的开发规范。并由本人基于公司项目环境进行一定程度的修改。</p>
+<p>在此感谢 <a href="https://laravel-china.org/" target="_blank" rel="noopener">laravel-china</a> 社区和 <a href="http://yousails.com/" target="_blank" rel="noopener">优帆远扬团队</a> 和 社区站长 <a href="https://laravel-china.org/users/1" target="_blank" rel="noopener">@Summer</a> 的无私奉献。</p>
+<a id="more"></a>
+<h3 id="1-1-关于规范"><a class="header-anchor" href="#1-1-关于规范">¶</a>1.1. 关于规范</h3>
+<h4 id="1-1-1-说明"><a class="header-anchor" href="#1-1-1-说明">¶</a>1.1.1. 说明</h4>
+<h4 id="1-1-2-优势"><a class="header-anchor" href="#1-1-2-优势">¶</a>1.1.2 优势</h4>
+<ul>
+<li>高效编码 - 避免了过多的选择造成的『决策时间』浪费；</li>
+<li>风格统一 - 最大程度统一了开发团队成员代码书写风格和思路，代码阅读起来如出一辙；</li>
+<li>减少错误 - 减小初级工程师的犯错几率。</li>
+</ul>
+<h3 id="1-2-开发哲学"><a class="header-anchor" href="#1-2-开发哲学">¶</a>1.2. 开发哲学</h3>
+<p>因为篇幅原因本规范无法涉及到项目里每一块代码的编写标准，所以此处重点说明下此规范遵循的『开发哲学』，开发中请把其当做指明灯，来指引你做决策：</p>
+<ul>
+<li>DRY –「Don’t Repeat Yourself」不写重复的逻辑代码；</li>
+<li>约定俗成 - 「Convention Over Configuration」，优先选择框架提倡的做法，不过度配置；</li>
+<li>KISS - 「Keep it Simple, Stupid」提倡简单易读的代码，不写高深、晦涩难懂的代码，<strong>不过度设计</strong>；</li>
+<li>主厨精选 - 让有经验的人来为你选择方案，不独创方案；</li>
+<li>官方提倡 - 优先选择官方推崇的方案。</li>
+</ul>
+<h3 id="1-3-关于-能愿动词-的使用"><a class="header-anchor" href="#1-3-关于-能愿动词-的使用">¶</a>1.3. 关于「能愿动词」的使用</h3>
+<p>为了避免歧义，文档大量使用了「能愿动词」，对应的解释如下：</p>
+<ul>
+<li>必须（Must） - 只能这样子做，请无条件遵循，没有别的选项；</li>
+<li>绝不（Must Not）- 严令禁止，在任何情况下都不能这样做；</li>
+<li>应该（Should） - 强烈建议这样做，但是不强求；</li>
+<li>不应该（Should Not） - 强烈建议不这样做，但是不强求；</li>
+<li>可以（May） - 选择性高一点，在这个文档内，此词语使用较少；</li>
+</ul>
+<blockquote>
+<p>参考：<a href="http://www.ietf.org/rfc/rfc2119.txt" target="_blank" rel="noopener">RFC 2119</a></p>
+</blockquote>
+<h3 id="1-4-关于执行"><a class="header-anchor" href="#1-4-关于执行">¶</a>1.4. 关于执行</h3>
+<p>在这份规范里，有些内容里会解释『这样做的理由』，这样做的目的是为了达成共识。</p>
+<blockquote>
+<p>请不要以此『理由』的准确性来怀疑规范的权威性，规范就是规范，可以讨论改正，但在执行的时候 <strong>必须</strong> 严格遵守。</p>
+</blockquote>
+<p>请把『团队项目开发』想象就是在行军打仗，对于规范要绝对服从。要有大局观，做到团结一致，把个人的喜好放一边，把整个团队的执行效率放在第一位。</p>
+<h2 id="2-项目规范"><a class="header-anchor" href="#2-项目规范">¶</a>2. 项目规范</h2>
+<h3 id="2-1-laravel-版本选择"><a class="header-anchor" href="#2-1-laravel-版本选择">¶</a>2.1. Laravel 版本选择</h3>
+<p>以下是 <a href="https://laravel-china.org/articles/2594/laravel-release-roadmap" target="_blank" rel="noopener">Laravel 的版本路线图</a>：</p>
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>发布日期</th>
+<th>版本类型</th>
+<th>维护周期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Laravel 5.1</td>
+<td>2015 年 6 月</td>
+<td>LTS 长久支持</td>
+<td>Bug 修复 2017 年 6 月份，安全修复 2018 年 6 月份</td>
+</tr>
+<tr>
+<td>Laravel 5.2</td>
+<td>2015 年 12 月</td>
+<td>一般发行</td>
+<td>提供 6 个月的 Bug 修复支持，一年的安全修复支持</td>
+</tr>
+<tr>
+<td>Laravel 5.3</td>
+<td>2016 年 8 月</td>
+<td>一般发行</td>
+<td>提供 6 个月的 Bug 修复支持，一年的安全修复支持</td>
+</tr>
+<tr>
+<td>Laravel 5.4</td>
+<td>2017 年 1 月</td>
+<td>一般发行</td>
+<td>提供 6 个月的 Bug 修复支持，一年的安全修复支持</td>
+</tr>
+<tr>
+<td>Laravel 5.5</td>
+<td>2017 年 8 月</td>
+<td>LTS 长久支持</td>
+<td>Bug 修复 2019 年 8 月份，安全修复 2020 年 8 月份</td>
+</tr>
+</tbody>
+</table>
+<p>选择 Laravel 版本时，<strong>应该</strong> 优先考虑 LTS 版本，因为安全性和稳定性考虑，商业项目开发中 <strong>不应该</strong> 使用最新版本的 『Laravel 一般发行版』。</p>
+<p>扩展阅读：<a href="https://laravel-china.org/topics/2595/how-to-select-the-laravel-framework-version" target="_blank" rel="noopener">如何选择 Laravel 框架版本</a>。</p>
+<p>请使用以下命令来创建指定版本的 Laravel 项目：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">composer create-project laravel/laravel project-name --prefer-dist &quot;5.5.*&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-环境说明"><a class="header-anchor" href="#2-2-环境说明">¶</a>2.2. 环境说明</h3>
+<p>一般情况下，一个项目 <strong>应该</strong> 有以下三个基本的项目环境：</p>
+<ul>
+<li>Local - 开发环境</li>
+<li>Staging - 线上测试环境</li>
+<li>Production - 线上生产环境</li>
+</ul>
+<h4 id="2-2-1-服务器系统"><a class="header-anchor" href="#2-2-1-服务器系统">¶</a>2.2.1. 服务器系统</h4>
+<p>Laravel 社区提倡使用 Ubuntu 系统，开发环境 Homestead 中默认也是使用 Ubuntu 系统。所以服务器系统 <strong>应该</strong> 优先考虑 Ubuntu，并且是 LTS 支持的系统，如 Ubuntu 14.04.5 LTS 或者 Ubuntu 16.04.2 LTS 。</p>
+<h4 id="2-2-2-php-7"><a class="header-anchor" href="#2-2-2-php-7">¶</a>2.2.2. PHP 7</h4>
+<p>PHP 版本 <strong>应该</strong> 优先考虑 PHP 7，不止因为其运行高效，还因为随着 PHP 7 的广泛应用，PHP 7 以下的版本将会很快停止维护。</p>
+<h4 id="2-2-3-mysql-5-7"><a class="header-anchor" href="#2-2-3-mysql-5-7">¶</a>2.2.3. MySQL 5.7</h4>
+<p>数据库软件 <strong>应该</strong> 优先选择 MySQL，因为其使用率最高。MySQL 5.7 与 PHP 7 一样，已经是大势所趋，选择版本时 <strong>应该</strong> 优先考虑 MySQL 5.7。</p>
+<h4 id="2-2-4-其他软件"><a class="header-anchor" href="#2-2-4-其他软件">¶</a>2.2.4. 其他软件</h4>
+<p><strong>应该</strong> 优先选择 <strong>流行</strong> <strong>稳定</strong> 版本。线上环境 <strong>绝不</strong> 使用 Beta 或者其他不稳定发行版。</p>
+<h4 id="2-2-5-local-开发环境"><a class="header-anchor" href="#2-2-5-local-开发环境">¶</a>2.2.5. Local 开发环境</h4>
+<p>所有项目 <strong>应该</strong> 使用 <a href="http://laravel-china.org/docs/5.4/homestead" target="_blank" rel="noopener">Homestead</a> 作为应用程序运行的环境。请阅读 <a href="https://laravel-china.org/articles/4668/why-do-you-have-to-use-homestead-to-develop-laravel-applications" target="_blank" rel="noopener">为什么必须使用 Homestead 来开发 Laravel 应用？</a> 。</p>
+<h4 id="2-2-6-production-生产环境"><a class="header-anchor" href="#2-2-6-production-生产环境">¶</a>2.2.6. Production 生产环境</h4>
+<p>线上环境部署可以参考 <a href="https://laravel-china.org/topics/2814/ubuntu-1416-under-the-laravel-lnmp-online-environment-automatically-deploy-scripts" target="_blank" rel="noopener">Ubuntu 14/16 下的 Laravel LNMP 线上环境自动部署脚本</a>，此脚本参照了 <a href="https://github.com/laravel/settler/blob/master/scripts/provision.sh" target="_blank" rel="noopener">Homestead 环境设置脚本</a> ，并做了更加适用于生产环境的效率和安全调优。</p>
+<p>处于安全考虑，线上环境 <strong>必须</strong> 只开放以下端口：</p>
+<ul>
+<li>80 HTTP</li>
+<li>443 HTTPS</li>
+<li>22 SSH</li>
+</ul>
+<h4 id="2-2-7-staging-线上测试环境"><a class="header-anchor" href="#2-2-7-staging-线上测试环境">¶</a>2.2.7. Staging 线上测试环境</h4>
+<p>除了域名等其他独立应用配置以外，环境 <strong>必须</strong> 跟 Production 保持高度一致性，可以的话 <strong>应该</strong> 与 Production 使用同台机器。</p>
+<h4 id="2-2-8-环境变量"><a class="header-anchor" href="#2-2-8-环境变量">¶</a>2.2.8. 环境变量</h4>
+<p>在项目中 <strong>必须</strong> 使用环境变量(.env文件)来区分敏感数据的设置。</p>
+<p>在项目中 <strong>必须</strong> 存在以下 env 文件，分别存放对应环境下的敏感数据配置，如数据库相关配置，缓存相关配置等</p>
+<ul>
+<li>.env.production</li>
+<li>.env.staging</li>
+<li>.env.local</li>
+</ul>
+<p>并在对应的环境配置 <code>APP_ENV</code> 环境变量为 <code>local</code>，<code>staging</code> 或 <code>production</code></p>
+<p>配置环境变量的做法是在 <code>nginx</code> 的配置文件中写下这句代码：</p>
+<figure class="highlight plain"><figcaption><span>APP_ENV  production;```</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">**绝不** 在除 `config` 目录意外使用 `env` 函数，原因是如果运行如下命令缓存了配置后，laravel 就不会把 .env 中的配置加载到 $_ENV 全局变量中。</span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">php artisan config:cache</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-扩展包的引入"><a class="header-anchor" href="#2-3-扩展包的引入">¶</a>2.3. 扩展包的引入</h3>
+<p>Laravel 扩展包的注册会对应用造成消耗。有一些扩展包是开发环境中专用，生产环境中并不会使用到，为了避免无用的负载， 必须严格控制其安装和加载。</p>
+<h4 id="2-3-1-安装"><a class="header-anchor" href="#2-3-1-安装">¶</a>2.3.1. 安装</h4>
+<p>安装开发专用扩展包时 <strong>必须</strong> 使用 <code>--dev</code> 参数，如：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">composer require laracasts/generators --dev</span><br></pre></td></tr></table></figure>
+<h4 id="2-3-2-加载"><a class="header-anchor" href="#2-3-2-加载">¶</a>2.3.2. 加载</h4>
+<p>开发专用的 <code>provider</code> <strong>绝不</strong> 在 <code>config/app.php</code> 里面注册，必须 在 <code>app/Providers/AppServiceProvider.php</code> 文件中使用如以下方式：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">register</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;app-&gt;environment() == <span class="string">'local'</span>) &#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;app-&gt;register(<span class="string">'Laracasts\Generators\GeneratorsServiceProvider'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-4-配置信息与环境变量"><a class="header-anchor" href="#2-4-配置信息与环境变量">¶</a>2.4. 配置信息与环境变量</h3>
+<p>假如我们有个『CDN 域名』的变量，在 Laravel 中有以下几种方法：</p>
+<ol>
+<li>硬代码，直接写死。- ❌ 可维护性低</li>
+<li>写死在 <code>config/app.php</code> 文件中。 - ❌ 无法区分环境进行配置</li>
+<li>存储于 <code>.env</code> 文件中，使用 <code>env()</code> 方法直接读取。 - ❌ 虽然解决了环境变量问题但是不推荐</li>
+<li>存储在 <code>.env</code> 和 <code>config/app.php</code> 文件中，然后使用 <code>config()</code> 函数来读取。- ✅ 最佳实践</li>
+</ol>
+<p>第一种方法是最古老的方法，代码可维护性极低，一旦域名变更就只能全局替换。第二种方法无法区分环境，例如本地使用开发环境域名测试，线上才是正式的 CDN 域名。第三种方法虽然解决了环境变量的问题，并且也具备一定的灵活性，但是不够灵活，假如你的网站流量巨大，需要配置几个 CDN 域名，使其在加载静态资源时随机支配域名，这种做法就无法满足需求了。第四种方法即支持环境变量，又具备极高的灵活性，假如遇到同样的 CDN 多域名随机问题，你只需要写一个辅助方法，然后在 <code>config/app.php</code> 中调用即可，不需要动到任何一行业务逻辑代码。</p>
+<h4 id="2-4-1-代码示例"><a class="header-anchor" href="#2-4-1-代码示例">¶</a>2.4.1. 代码示例</h4>
+<p><code>.env</code> 文件中设置：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CDN_DOMAIN=cdndomain.com</span><br></pre></td></tr></table></figure>
+<p><code>config/app.php</code> 文件中设置：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&apos;cdn_domain&apos; =&gt; env(&apos;CDN_DOMAIN&apos;, null),</span><br></pre></td></tr></table></figure>
+<p>程序中两种获取 <code>相同配置</code> 的方法：</p>
+<ol>
+<li><code>env('CDN_DOMAIN')</code></li>
+<li><code>config('app.cdn_domain')</code></li>
+</ol>
+<p>在此统一规定：所有程序配置信息 <strong>必须</strong> 通过 <code>config()</code> 来读取，所有的 <code>.env</code> 配置信息 <strong>必须</strong> 通过 <code>config()</code> 来读取，<strong>绝不</strong> 在配置文件以外的范围使用 <code>env()</code>。</p>
+<h4 id="2-4-2-有何优势"><a class="header-anchor" href="#2-4-2-有何优势">¶</a>2.4.2. 有何优势</h4>
+<p>这样做主要有以下几个优势：</p>
+<ol>
+<li>定义分明，<code>config()</code> 是配置信息，<code>env()</code> 只是用来区分不同环境；</li>
+<li>统一放置于 <code>config</code> 中还可以利用框架的 <a href="http://d.laravel-china.org/docs/5.4/installation#configuration-caching" target="_blank" rel="noopener">配置信息缓存功能</a> 来提交运行效率；</li>
+<li>代码健壮性， <code>config()</code> 在 <code>env()</code> 之上多出来一个抽象层，会使代码更加健壮，更加灵活。</li>
+</ol>
+<blockquote>
+<p>注： Laravel 5.2 以后的官方文档也提倡用此方法。</p>
+</blockquote>
+<h3 id="2-5-辅助函数"><a class="header-anchor" href="#2-5-辅助函数">¶</a>2.5. 辅助函数</h3>
+<p>Laravel 提供了很多 <a href="http://d.laravel-china.org/docs/5.4/helpers" target="_blank" rel="noopener">辅助函数</a>，有时候我们也需要创建自己的辅助函数。</p>
+<p><strong>必须</strong> 把所有的『自定义辅助函数』存放于 <code>bootstrap/helpers.php</code> 中。</p>
+<p>并在 <code>bootstrap/app.php</code> 文件的最顶部进行加载：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="keyword">__DIR__</span> . <span class="string">'helpers.php'</span>;</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="2-6-代码风格"><a class="header-anchor" href="#2-6-代码风格">¶</a>2.6. 代码风格</h3>
+<p>代码风格 <strong>必须</strong> 严格遵守 <a href="https://segmentfault.com/a/1190000002521620" target="_blank" rel="noopener">PSR2</a> 规范</p>
+<p>在代码提交前 <strong>应该</strong> 使用 <a href="https://github.com/squizlabs/PHP_CodeSniffer/" target="_blank" rel="noopener">PHP_CodeSniffer</a> 工具做规范检查</p>
+<h3 id="2-7-路由器-todo"><a class="header-anchor" href="#2-7-路由器-todo">¶</a>2.7. 路由器 todo</h3>
+<h4 id="2-7-1-路由闭包"><a class="header-anchor" href="#2-7-1-路由闭包">¶</a>2.7.1 路由闭包</h4>
+<p><strong>绝不</strong> 在路由配置文件里书写『闭包路由』或者其他业务逻辑代码，因为一旦使用将无法使用 <a href="http://d.laravel-china.org/docs/5.4/controllers#route-caching" target="_blank" rel="noopener">路由缓存</a> 。</p>
+<p>路由器要保持干净整洁，<strong>绝不</strong> 放置除路由配置以外的其他程序逻辑。</p>
+<h4 id="2-7-2-restful-路由"><a class="header-anchor" href="#2-7-2-restful-路由">¶</a>2.7.2. Restful 路由</h4>
+<p><strong>必须</strong> 优先使用 Restful 路由，配合资源控制器使用，见 <a href="http://d.laravel-china.org/docs/5.4/controllers#RESTful-%E8%B5%84%E6%BA%90%E6%8E%A7%E5%88%B6%E5%99%A8" target="_blank" rel="noopener">文档</a>。</p>
+<p><a href="https://fsdhubcdn.phphub.org/uploads/images/201705/19/1/09GHC72ygP.png" target="_blank" rel="noopener"><img src="https://fsdhubcdn.phphub.org/uploads/images/201705/19/1/09GHC72ygP.png" alt="file"></a></p>
+<p>超出 Restful 路由的，<strong>应该</strong> 模仿上图的方式来定义路由。</p>
+<h4 id="2-7-3-resource-方法正确使用"><a class="header-anchor" href="#2-7-3-resource-方法正确使用">¶</a>2.7.3. resource 方法正确使用</h4>
+<p>一般资源路由定义：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">Route::resource(<span class="string">'photos'</span>, <span class="string">'PhotosController'</span>);</span><br></pre></td></tr></table></figure>
+<p>等于以下路由定义：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">Route::get(<span class="string">'/photos'</span>, <span class="string">'PhotosController@index'</span>)-&gt;name(<span class="string">'photos.index'</span>);</span><br><span class="line">Route::get(<span class="string">'/photos/create'</span>, <span class="string">'PhotosController@create'</span>)-&gt;name(<span class="string">'photos.create'</span>);</span><br><span class="line">Route::post(<span class="string">'/photos'</span>, <span class="string">'PhotosController@store'</span>)-&gt;name(<span class="string">'photos.store'</span>);</span><br><span class="line">Route::get(<span class="string">'/photos/&#123;photo&#125;'</span>, <span class="string">'PhotosController@show'</span>)-&gt;name(<span class="string">'photos.show'</span>);</span><br><span class="line">Route::get(<span class="string">'/photos/&#123;photo&#125;/edit'</span>, <span class="string">'PhotosController@edit'</span>)-&gt;name(<span class="string">'photos.edit'</span>);</span><br><span class="line">Route::put(<span class="string">'/photos/&#123;photo&#125;'</span>, <span class="string">'PhotosController@update'</span>)-&gt;name(<span class="string">'photos.update'</span>);</span><br><span class="line">Route::delete(<span class="string">'/photos/&#123;photo&#125;'</span>, <span class="string">'PhotosController@destroy'</span>)-&gt;name(<span class="string">'photos.destroy'</span>);</span><br></pre></td></tr></table></figure>
+<p>使用 <code>resource</code> 方法时，如果仅使用到部分路由，<strong>必须</strong> 使用 <code>only</code> 列出所有可用路由：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Route::resource(&apos;photos&apos;, &apos;PhotosController&apos;, [&apos;only&apos; =&gt; [&apos;index&apos;, &apos;show&apos;]]);</span><br></pre></td></tr></table></figure>
+<p><strong>绝不</strong> 使用 <code>except</code>，因为 <code>only</code> 相当于白名单，相对于 <code>except</code> 更加直观。路由使用白名单有利于养成『安全习惯』。</p>
+<h4 id="2-7-3-单数-or-复数？"><a class="header-anchor" href="#2-7-3-单数-or-复数？">¶</a>2.7.3. 单数 or 复数？</h4>
+<p>资源路由路由 URI <strong>必须</strong> 使用复数形式，如：</p>
+<ul>
+<li><code>/photos/create</code></li>
+<li><code>/photos/{photo}</code></li>
+</ul>
+<p>错误的例子如：</p>
+<ul>
+<li><code>/photo/create</code></li>
+<li><code>/photo/{photo}</code></li>
+</ul>
+<h4 id="2-7-4-路由模型绑定"><a class="header-anchor" href="#2-7-4-路由模型绑定">¶</a>2.7.4. 路由模型绑定</h4>
+<p>在允许使用路由 <a href="http://d.laravel-china.org/docs/5.4/routing#route-model-binding" target="_blank" rel="noopener">模型绑定</a> 的地方 <strong>必须</strong> 使用。</p>
+<p>模型绑定代码 <strong>必须</strong> 放置于 <code>app/Providers/RouteServiceProvider.php</code> 文件的 <code>boot</code> 方法中：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">boot</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Route::bind(<span class="string">'user_name'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> User::where(<span class="string">'name'</span>, $value)-&gt;first();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    Route::bind(<span class="string">'photo'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Photo::find($value);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">parent</span>::boot();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-7-5-全局路由器参数"><a class="header-anchor" href="#2-7-5-全局路由器参数">¶</a>2.7.5. 全局路由器参数</h4>
+<p>出于安全考虑，<strong>应该</strong> 使用全局路由器参数限制，详见 <a href="http://d.laravel-china.org/docs/5.4/routing#%E5%85%A8%E5%B1%80%E9%99%90%E5%88%B6" target="_blank" rel="noopener">文档</a>。</p>
+<p><strong>必须</strong> 在 <code>RouteServiceProvider</code> 文件的 boot 方法里定义模式：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 定义你的路由模型绑定，模式过滤器等。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  \Illuminate\Routing\Router  $router</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> void</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">boot</span><span class="params">(Router $router)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $router-&gt;pattern(<span class="string">'id'</span>, <span class="string">'[0-9]+'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">parent</span>::boot($router);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>模式一旦被定义，便会自动应用到所有使用该参数名称的路由上：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">Route::get(<span class="string">'users/&#123;id&#125;'</span>, <span class="string">'UsersController@show'</span>);</span><br><span class="line">Route::get(<span class="string">'photos/&#123;id&#125;'</span>, <span class="string">'PhotosController@show'</span>);</span><br></pre></td></tr></table></figure>
+<p>只有在 <code>id</code> 为数字时，才会路由到控制器方法中，否则 404 错误。</p>
+<h4 id="2-7-6-路由命名"><a class="header-anchor" href="#2-7-6-路由命名">¶</a>2.7.6. 路由命名<a href="#%E8%B7%AF%E7%94%B1%E5%91%BD%E5%90%8D">#</a></h4>
+<p>除了 <code>resource</code> 资源路由以外，其他所有路由都 <strong>必须</strong> 使用 <code>name</code> 方法进行命名。</p>
+<p><strong>必须</strong> 使用『资源前缀』作为命名规范，如下的 <code>users.follow</code>，资源前缀的值是 <code>users.</code>：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">Route::post(<span class="string">'users/&#123;id&#125;/follow'</span>, <span class="string">'UsersController@follow'</span>)-&gt;name(<span class="string">'users.follow'</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="2-7-7-获取-url"><a class="header-anchor" href="#2-7-7-获取-url">¶</a>2.7.7. 获取 URL</h4>
+<p><strong>必须</strong> 使用 <code>route</code> 来获取 URL：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$url = route(<span class="string">'profile'</span>, [<span class="string">'id'</span> =&gt; <span class="number">1</span>]);</span><br></pre></td></tr></table></figure>
+<p>无法使用 <code>route</code> 的情况下，<strong>可以</strong> 使用 <code>url</code> 方法来获取 URL：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">url(<span class="string">'profile'</span>, [<span class="number">1</span>]);</span><br></pre></td></tr></table></figure>
+<h3 id="2-8-数据模型"><a class="header-anchor" href="#2-8-数据模型">¶</a>2.8. 数据模型</h3>
+<h4 id="2-8-1-放置位置"><a class="header-anchor" href="#2-8-1-放置位置">¶</a>2.8.1. 放置位置</h4>
+<p>所有的数据模型文件，都 <strong>必须</strong> 存放在：<code>app/Models/</code> 文件夹中。</p>
+<p>命名空间：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Models</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="2-8-2-user-php"><a class="header-anchor" href="#2-8-2-user-php">¶</a>2.8.2. User.php</h4>
+<p>Laravel 5.1 之后默认安装会把 <code>User</code> 模型存放在 <code>app/User.php</code>，<strong>必须</strong> 移动到 <code>app/Models</code> 文件夹中，并修改命名空间声明为 <code>App/Models</code>，同上。</p>
+<p>为了不破坏原有的逻辑点，<strong>必须</strong> 全局搜索 <code>App/User</code> 并替换为 <code>App/Models/User</code>。</p>
+<h4 id="2-8-3-使用基类"><a class="header-anchor" href="#2-8-3-使用基类">¶</a>2.8.3. 使用基类</h4>
+<p>所有的 <strong>Eloquent 数据模型</strong> 都 <strong>必须</strong> 继承统一的基类 <code>App/Models/BaseModel</code>，此基类存放位置为 <code>/app/Models/BaseModel.php</code>，内容参考以下：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Models</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Database</span>\<span class="title">Eloquent</span>\<span class="title">Model</span> <span class="title">as</span> <span class="title">EloquentModel</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseModel</span> <span class="keyword">extends</span> <span class="title">EloquentModel</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以 Photo 数据模型作为例子继承 BaseModel 基类：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Models</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Photo</span> <span class="keyword">extends</span> <span class="title">BaseModel</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> $fillable = [<span class="string">'id'</span>, <span class="string">'user_id'</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">user</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;belongsTo(User::class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-8-4-命名规范"><a class="header-anchor" href="#2-8-4-命名规范">¶</a>2.8.4. 命名规范</h4>
+<p>数据模型相关的命名规范：</p>
+<ul>
+<li>数据模型类名 <code>必须</code> 为「单数」, 如：<code>App\Models\Photo</code></li>
+<li>类文件名 <code>必须</code> 为「单数」，如：<code>app/Models/Photo.php</code></li>
+<li>数据库表名字 <code>必须</code> 为「复数」，多个单词情况下使用「<a href="https://en.wikipedia.org/wiki/Snake_case" target="_blank" rel="noopener">Snake Case</a>」 如：<code>photos</code>, <code>my_photos</code></li>
+<li>数据库表迁移名字 <code>必须</code> 为「复数」，如：<code>2014_08_08_234417_create_photos_table.php</code></li>
+<li>数据填充文件名 <code>必须</code> 为「复数」，如：<code>PhotosTableSeeder.php</code></li>
+<li>数据库字段名 <code>必须</code> 为「<a href="https://en.wikipedia.org/wiki/Snake_case" target="_blank" rel="noopener">Snake Case</a>」，如：<code>view_count</code>, <code>is_vip</code></li>
+<li>数据库表主键 <code>必须</code> 为「id」</li>
+<li>数据库表外键 <code>必须</code> 为「resource_id」，如：<code>user_id</code>, <code>post_id</code></li>
+<li>数据模型变量 <code>必须</code> 为「resource_id」，如：<code>$user_id</code>, <code>$post_id</code></li>
+</ul>
+<h4 id="2-8-5-利用-trait-来扩展数据模型"><a class="header-anchor" href="#2-8-5-利用-trait-来扩展数据模型">¶</a>2.8.5. 利用 Trait 来扩展数据模型</h4>
+<p>有时候数据模型里的代码会变得很臃肿，<strong>应该</strong> 利用 Trait 来精简逻辑代码量，提高可读性，类似于 <a href="https://github.com/ruby-china/ruby-china/blob/master/app/models/topic.rb#L11-L17" target="_blank" rel="noopener">Ruby China 源码</a>。</p>
+<blockquote>
+<p>借鉴于 Rails 的设计理念：「Fat Models, Skinny Controllers」。</p>
+</blockquote>
+<p>存放于文件夹：<code>app/Models/Traits</code> 文件夹中。</p>
+<h4 id="2-8-6-关于-sql-文件"><a class="header-anchor" href="#2-8-6-关于-sql-文件">¶</a>2.8.6. 关于 SQL 文件</h4>
+<ul>
+<li><strong>绝不</strong> 使用命令行或者 PHPMyAdmin 直接创建索引或表。<strong>必须</strong> 使用 <a href="http://laravel-china.org/docs/5.4/migrations" target="_blank" rel="noopener">数据库迁移</a> 去创建表结构，并提交版本控制器中；</li>
+<li><strong>绝不</strong> 为了共享对数据库更改就直接导出 SQL，所有修改都 <strong>必须</strong> 使用 <a href="http://laravel-china.org/docs/5.4/migrations" target="_blank" rel="noopener">数据库迁移</a> ，并提交版本控制器中；</li>
+<li><strong>绝不</strong> 直接向数据库手动写入伪造的测试数据。<strong>必须</strong> 使用 <a href="http://laravel-china.org/docs/5.4/seeding" target="_blank" rel="noopener">数据填充</a> 来插入假数据，并提交版本控制器中。</li>
+</ul>
+<h4 id="2-8-7-全局作用域"><a class="header-anchor" href="#2-8-7-全局作用域">¶</a>2.8.7. 全局作用域</h4>
+<p>Laravel 的 <a href="https://laravel-china.org/docs/5.3/eloquent#global-scopes" target="_blank" rel="noopener">Model 全局作用域</a> 允许我们为给定模型的所有查询添加默认的条件约束。</p>
+<p>所有的全局作用域都 <strong>必须</strong> 统一使用 <code>闭包定义全局作用域</code>，如下：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 数据模型的启动方法</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> void</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">boot</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">parent</span>::boot();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span>::addGlobalScope(<span class="string">'age'</span>, <span class="function"><span class="keyword">function</span><span class="params">(Builder $builder)</span> </span>&#123;</span><br><span class="line">        $builder-&gt;where(<span class="string">'age'</span>, <span class="string">'&gt;'</span>, <span class="number">200</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-9-控制器"><a class="header-anchor" href="#2-9-控制器">¶</a>2.9. 控制器</h3>
+<p>todo</p>
+<h3 id="2-10-视图"><a class="header-anchor" href="#2-10-视图">¶</a>2.10. 视图</h3>
+<p>todo</p>
+<h3 id="2-11-artisan-命令行"><a class="header-anchor" href="#2-11-artisan-命令行">¶</a>2.11. Artisan 命令行</h3>
+<p>所有的自定义命令，都 <strong>必须</strong> 有项目的命名空间</p>
+<p>如：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">php artisan ssc:data-manager</span><br></pre></td></tr></table></figure>
+            <div class="ui basic segment">
+                <div class="ui basic circular huge button">
+                    <a href="#">Previous</a>
+                </div>
+                <div class="ui basic circular huge button">
+                    <a href="#">Next</a>
+                </div>
+            </div>
+        </div>
+        <div class="four wide right floated column">
+            <div class="ui secondary segment">
+                <h4 class="ui header">
+                    目录
+                </h4>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-前言"><span class="post-toc-text">¶1. 前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-1-关于规范"><span class="post-toc-text">¶1.1. 关于规范</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-1-1-说明"><span class="post-toc-text">¶1.1.1. 说明</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-1-2-优势"><span class="post-toc-text">¶1.1.2 优势</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-开发哲学"><span class="post-toc-text">¶1.2. 开发哲学</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-3-关于-能愿动词-的使用"><span class="post-toc-text">¶1.3. 关于「能愿动词」的使用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-4-关于执行"><span class="post-toc-text">¶1.4. 关于执行</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-项目规范"><span class="post-toc-text">¶2. 项目规范</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-1-laravel-版本选择"><span class="post-toc-text">¶2.1. Laravel 版本选择</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-环境说明"><span class="post-toc-text">¶2.2. 环境说明</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-1-服务器系统"><span class="post-toc-text">¶2.2.1. 服务器系统</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-2-php-7"><span class="post-toc-text">¶2.2.2. PHP 7</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-3-mysql-5-7"><span class="post-toc-text">¶2.2.3. MySQL 5.7</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-4-其他软件"><span class="post-toc-text">¶2.2.4. 其他软件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-5-local-开发环境"><span class="post-toc-text">¶2.2.5. Local 开发环境</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-6-production-生产环境"><span class="post-toc-text">¶2.2.6. Production 生产环境</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-7-staging-线上测试环境"><span class="post-toc-text">¶2.2.7. Staging 线上测试环境</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-8-环境变量"><span class="post-toc-text">¶2.2.8. 环境变量</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-3-扩展包的引入"><span class="post-toc-text">¶2.3. 扩展包的引入</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-3-1-安装"><span class="post-toc-text">¶2.3.1. 安装</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-3-2-加载"><span class="post-toc-text">¶2.3.2. 加载</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-4-配置信息与环境变量"><span class="post-toc-text">¶2.4. 配置信息与环境变量</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-4-1-代码示例"><span class="post-toc-text">¶2.4.1. 代码示例</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-4-2-有何优势"><span class="post-toc-text">¶2.4.2. 有何优势</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-5-辅助函数"><span class="post-toc-text">¶2.5. 辅助函数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-6-代码风格"><span class="post-toc-text">¶2.6. 代码风格</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-7-路由器-todo"><span class="post-toc-text">¶2.7. 路由器 todo</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-7-1-路由闭包"><span class="post-toc-text">¶2.7.1 路由闭包</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-7-2-restful-路由"><span class="post-toc-text">¶2.7.2. Restful 路由</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-7-3-resource-方法正确使用"><span class="post-toc-text">¶2.7.3. resource 方法正确使用</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-7-3-单数-or-复数？"><span class="post-toc-text">¶2.7.3. 单数 or 复数？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-7-4-路由模型绑定"><span class="post-toc-text">¶2.7.4. 路由模型绑定</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-7-5-全局路由器参数"><span class="post-toc-text">¶2.7.5. 全局路由器参数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-7-6-路由命名"><span class="post-toc-text">¶2.7.6. 路由命名#</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-7-7-获取-url"><span class="post-toc-text">¶2.7.7. 获取 URL</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-8-数据模型"><span class="post-toc-text">¶2.8. 数据模型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-8-1-放置位置"><span class="post-toc-text">¶2.8.1. 放置位置</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-8-2-user-php"><span class="post-toc-text">¶2.8.2. User.php</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-8-3-使用基类"><span class="post-toc-text">¶2.8.3. 使用基类</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-8-4-命名规范"><span class="post-toc-text">¶2.8.4. 命名规范</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-8-5-利用-trait-来扩展数据模型"><span class="post-toc-text">¶2.8.5. 利用 Trait 来扩展数据模型</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-8-6-关于-sql-文件"><span class="post-toc-text">¶2.8.6. 关于 SQL 文件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-8-7-全局作用域"><span class="post-toc-text">¶2.8.7. 全局作用域</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-9-控制器"><span class="post-toc-text">¶2.9. 控制器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-10-视图"><span class="post-toc-text">¶2.10. 视图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-11-artisan-命令行"><span class="post-toc-text">¶2.11. Artisan 命令行</span></a></li></ol></li></ol>
+            </div>
+            <!-- <h4 class="ui header">
+                Archives
+            </h4>
+            <div class="ui list">
+                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/php/设计模式/">设计模式</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/规范/">规范</a><span class="category-list-count">1</span></li></ul>
+            </div>
+            <div class="ui hidden divider"></div>
+            <h4 class="ui header">
+                Elsewhere
+            </h4>
+            <div class="ui list">
+                <a class="item">GitHub</a><a class="item">Twitter</a><a class="item">Google+</a><a class="item">Facebook</a>
+            </div> -->
+        </div>
+    </div>
+</div>
+    </main>
+    
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/zenburn.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js">
+</script>
+<script>
+    $(document).ready(function() {
+        $('td.code pre').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+ -->
+  </body>
+</html>
